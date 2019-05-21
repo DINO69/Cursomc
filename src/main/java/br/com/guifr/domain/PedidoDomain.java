@@ -2,6 +2,8 @@ package br.com.guifr.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -37,6 +39,8 @@ public class PedidoDomain implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="endereco_de_entrega_id")
 	private EnderecoDomain endereoDeEntrega;
+	
+	private Set<ItemPedidoDomain> itens = new HashSet<>();
 	
 	public PedidoDomain() {
 		
@@ -101,6 +105,15 @@ public class PedidoDomain implements Serializable{
 		this.endereoDeEntrega = endereoDeEntrega;
 	}
 
+	public Set<ItemPedidoDomain> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedidoDomain> itens) {
+		this.itens = itens;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,6 +138,7 @@ public class PedidoDomain implements Serializable{
 			return false;
 		return true;
 	}
+
 	
 	
 	

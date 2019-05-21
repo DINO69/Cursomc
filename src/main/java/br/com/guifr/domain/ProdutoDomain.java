@@ -2,7 +2,9 @@ package br.com.guifr.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +35,8 @@ public class ProdutoDomain implements Serializable{
 		inverseJoinColumns = @JoinColumn(name="categoria_id")
 	)
 	private List<CategoriaDomain> categorias = new ArrayList<>();
+	
+	private Set<ItemPedidoDomain> itens = new HashSet<>();
 	
 	public ProdutoDomain(){		
 	}
@@ -76,6 +80,25 @@ public class ProdutoDomain implements Serializable{
 		this.categorias = categorias;
 	}
 
+	public Set<ItemPedidoDomain> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedidoDomain> itens) {
+		this.itens = itens;
+	}
+	
+	public List<PedidoDomain> getPedidos(){
+		
+		List<PedidoDomain> lista = new ArrayList<>();
+		
+		for (ItemPedidoDomain x : itens) {
+			lista.add(x.getPedido());
+		}
+		
+		return lista;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -100,6 +123,8 @@ public class ProdutoDomain implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	
