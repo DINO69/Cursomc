@@ -26,12 +26,13 @@ public class ClienteDomain implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipoClienteEnum;
 	
-	@JsonManagedReference
+	@JsonManagedReference	
 	@OneToMany(mappedBy = "cliente")
 	private List<EnderecoDomain> enderecos = new ArrayList<>();
 	
@@ -39,6 +40,8 @@ public class ClienteDomain implements Serializable {
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
+	@JsonManagedReference
+	//@JsonBackReference
 	@OneToMany(mappedBy = "cliente")
 	private List<PedidoDomain> pedidos = new ArrayList<>();
 	

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -36,6 +37,8 @@ public class ProdutoDomain implements Serializable{
 	)
 	private List<CategoriaDomain> categorias = new ArrayList<>();
 	
+	@JsonBackReference
+	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedidoDomain> itens = new HashSet<>();
 	
 	public ProdutoDomain(){		
@@ -88,6 +91,7 @@ public class ProdutoDomain implements Serializable{
 		this.itens = itens;
 	}
 	
+	@JsonBackReference
 	public List<PedidoDomain> getPedidos(){
 		
 		List<PedidoDomain> lista = new ArrayList<>();

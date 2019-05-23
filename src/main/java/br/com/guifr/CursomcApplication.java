@@ -3,7 +3,6 @@ package br.com.guifr;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +14,7 @@ import br.com.guifr.domain.CidadeDomain;
 import br.com.guifr.domain.ClienteDomain;
 import br.com.guifr.domain.EnderecoDomain;
 import br.com.guifr.domain.EstadoDomain;
+import br.com.guifr.domain.ItemPedidoDomain;
 import br.com.guifr.domain.PagamentoComBoletoDomain;
 import br.com.guifr.domain.PagamentoComCartaoDomain;
 import br.com.guifr.domain.PagamentoDomain;
@@ -27,6 +27,7 @@ import br.com.guifr.repositories.CidadeRepository;
 import br.com.guifr.repositories.ClienteRepository;
 import br.com.guifr.repositories.EnderecoRepository;
 import br.com.guifr.repositories.EstadoRepository;
+import br.com.guifr.repositories.ItemRepository;
 import br.com.guifr.repositories.PagamentoRepository;
 import br.com.guifr.repositories.PedidoRepository;
 import br.com.guifr.repositories.ProdutoRepository;
@@ -50,6 +51,8 @@ public class CursomcApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemRepository itemRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -136,6 +139,17 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
+		
+		ItemPedidoDomain ip1 = new ItemPedidoDomain(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedidoDomain ip2 = new ItemPedidoDomain(ped1, p3, 0.00, 2, 80.00);
+		ItemPedidoDomain ip3 = new ItemPedidoDomain(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		
+		itemRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
 		
 	}
 

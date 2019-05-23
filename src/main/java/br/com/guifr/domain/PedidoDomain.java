@@ -12,9 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class PedidoDomain implements Serializable{
@@ -29,17 +33,22 @@ public class PedidoDomain implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date instante;
 	
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "pedido")
+	@JsonManagedReference
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private PagamentoDomain pagamento;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private ClienteDomain cliente;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="endereco_de_entrega_id")
 	private EnderecoDomain endereoDeEntrega;
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedidoDomain> itens = new HashSet<>();
 	
 	public PedidoDomain() {

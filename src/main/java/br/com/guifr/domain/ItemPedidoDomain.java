@@ -2,8 +2,18 @@ package br.com.guifr.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
 public class ItemPedidoDomain implements Serializable {
 	
+	
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
 	private Double desconto;
@@ -22,11 +32,13 @@ public class ItemPedidoDomain implements Serializable {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
-
+	
+	@JsonBackReference
 	public PedidoDomain getPedido() {
 		return id.getPedido();
 	}
-
+	
+	
 	public ProdutoDomain getProduto() {
 		return id.getProduto();
 	}
