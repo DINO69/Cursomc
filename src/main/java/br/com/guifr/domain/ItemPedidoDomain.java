@@ -6,13 +6,15 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ItemPedidoDomain implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
@@ -33,7 +35,7 @@ public class ItemPedidoDomain implements Serializable {
 		this.preco = preco;
 	}
 	
-	@JsonBackReference
+	@JsonIgnore
 	public PedidoDomain getPedido() {
 		return id.getPedido();
 	}
