@@ -3,10 +3,8 @@ package br.com.guifr;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.TimeZone;
 
-import org.hibernate.query.criteria.internal.expression.function.LocateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

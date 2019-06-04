@@ -29,6 +29,8 @@ public class CategoriaResource {
 		list.add(cat1);
 		list.add(cat2);
 		
+		list = service.list();
+		
 		return list;
 	}
 	

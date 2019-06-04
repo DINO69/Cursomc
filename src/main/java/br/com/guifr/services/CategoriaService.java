@@ -1,11 +1,13 @@
 package br.com.guifr.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.guifr.domain.CategoriaDomain;
+import br.com.guifr.domain.ClienteDomain;
 import br.com.guifr.repositories.CategoriaRepository;
 import br.com.guifr.services.exceptions.ObjectNotFoundException;
 
@@ -23,6 +25,12 @@ public class CategoriaService {
 		"Objeto não encontrado! Id: " + id + ", Tipo: " + CategoriaDomain.class.getName())); 
 		
 		//return obj.orElse(null);
+		
+	}
+	
+	public List<CategoriaDomain> list() {
+		
+		return repo.findAll();
 		
 	}
 	

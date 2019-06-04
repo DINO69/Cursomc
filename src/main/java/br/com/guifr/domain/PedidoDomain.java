@@ -3,7 +3,6 @@ package br.com.guifr.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,12 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class PedidoDomain implements Serializable{
@@ -36,11 +31,11 @@ public class PedidoDomain implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm", locale = "pt-BR")	
 	private Date instante;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private PagamentoDomain pagamento;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private ClienteDomain cliente;

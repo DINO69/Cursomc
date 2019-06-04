@@ -14,8 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.guifr.domain.enums.TipoClienteEnum;
 
@@ -33,7 +32,7 @@ public class ClienteDomain implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipoClienteEnum;
 	
-	@JsonManagedReference	
+	//@JsonManagedReference	
 	@OneToMany(mappedBy = "cliente")
 	private List<EnderecoDomain> enderecos = new ArrayList<>();
 	
@@ -42,7 +41,8 @@ public class ClienteDomain implements Serializable {
 	private Set<String> telefones = new HashSet<>();
 	
 	
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<PedidoDomain> pedidos = new ArrayList<>();
 	
