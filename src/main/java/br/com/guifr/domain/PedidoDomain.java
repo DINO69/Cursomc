@@ -3,6 +3,7 @@ package br.com.guifr.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -30,14 +32,15 @@ public class PedidoDomain implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm", locale = "pt-BR")	
 	private Date instante;
 	
 	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private PagamentoDomain pagamento;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private ClienteDomain cliente;
@@ -47,7 +50,7 @@ public class PedidoDomain implements Serializable{
 	@JoinColumn(name="endereco_de_entrega_id")
 	private EnderecoDomain endereoDeEntrega;
 	
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedidoDomain> itens = new HashSet<>();
 	
@@ -82,6 +85,7 @@ public class PedidoDomain implements Serializable{
 		this.id = id;
 	}
 
+	
 	public Date getInstante() {
 		return instante;
 	}

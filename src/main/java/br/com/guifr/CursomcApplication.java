@@ -3,7 +3,10 @@ package br.com.guifr;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.TimeZone;
 
+import org.hibernate.query.criteria.internal.expression.function.LocateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -108,7 +111,10 @@ public class CursomcApplication implements CommandLineRunner {
 		clienteRepository.saveAll(Arrays.asList(cli1));
 		enderecoRepository.saveAll(Arrays.asList(e1,e2));
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		//Locale locale = new Locale("pt","BR");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");		
+		sdf.setTimeZone(TimeZone.getTimeZone("UTC-3"));
 		
 		
 		PedidoDomain ped1 = new PedidoDomain(null,
