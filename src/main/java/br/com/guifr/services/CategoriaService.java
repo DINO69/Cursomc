@@ -38,4 +38,9 @@ public class CategoriaService {
 		return repo.save(obj);
 	}
 	
+	public Categoria update(Categoria obj) {
+		find(obj.getId()); // Verificar se o id esta cadastrado
+		return repo.save(obj);
+	}
+	
 }
