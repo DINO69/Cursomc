@@ -9,7 +9,7 @@ import javax.persistence.TemporalType;
 import br.com.guifr.domain.enums.EstadoPagamentoEnum;
 
 @Entity
-public class PagamentoComBoletoDomain extends PagamentoDomain {
+public class PagamentoComBoleto extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,12 +19,12 @@ public class PagamentoComBoletoDomain extends PagamentoDomain {
 	@Temporal(TemporalType.DATE)
 	private Date dataPagamento;
 	
-	public PagamentoComBoletoDomain() {
+	public PagamentoComBoleto() {
 		
 	}
 
 
-	public PagamentoComBoletoDomain(Integer id, EstadoPagamentoEnum estado, PedidoDomain pedido,Date dataVencimento, Date dataPagamento) {
+	public PagamentoComBoleto(Integer id, EstadoPagamentoEnum estado, Pedido pedido,Date dataVencimento, Date dataPagamento) {
 		super(id, estado, pedido);
 		this.dataVencimento = dataVencimento;
 		this.dataPagamento = dataPagamento;

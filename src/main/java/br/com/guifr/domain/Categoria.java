@@ -1,39 +1,38 @@
 package br.com.guifr.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
-public class CidadeDomain implements Serializable {
+public class Categoria implements Serializable{
 
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private String nome;
 	
 	//@JsonManagedReference
-	@ManyToOne
-	@JoinColumn(name="estado_id")
-	private EstadoDomain estado;
-
-	public CidadeDomain(){
-		
-	}
+	@ManyToMany(mappedBy = "categorias")	
+	private List<Produto> produtos = new ArrayList<>();
 	
-	public CidadeDomain(Integer id, String nome, EstadoDomain estado) {
+	public Categoria() {
+
+	}
+
+	public Categoria(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.estado = estado;
 	}
 
 	public Integer getId() {
@@ -51,13 +50,13 @@ public class CidadeDomain implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public EstadoDomain getEstado() {
-		return estado;
+	
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 
-	public void setEstado(EstadoDomain estado) {
-		this.estado = estado;
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
@@ -76,7 +75,7 @@ public class CidadeDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CidadeDomain other = (CidadeDomain) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -84,7 +83,7 @@ public class CidadeDomain implements Serializable {
 			return false;
 		return true;
 	}
+
 	
-	
-	
+
 }

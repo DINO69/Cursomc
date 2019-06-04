@@ -16,7 +16,7 @@ import br.com.guifr.domain.enums.EstadoPagamentoEnum;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PagamentoDomain implements Serializable {
+public abstract class Pagamento implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -31,13 +31,13 @@ public abstract class PagamentoDomain implements Serializable {
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId
-	private PedidoDomain pedido;
+	private Pedido pedido;
 	
-	public PagamentoDomain() {
+	public Pagamento() {
 		
 	}
 
-	public PagamentoDomain(Integer id, EstadoPagamentoEnum estado, PedidoDomain pedido) {
+	public Pagamento(Integer id, EstadoPagamentoEnum estado, Pedido pedido) {
 		super();
 		this.id = id;
 		this.estado = estado.getCod();
@@ -60,11 +60,11 @@ public abstract class PagamentoDomain implements Serializable {
 		this.estado = estado.getCod();
 	}
 
-	public PedidoDomain getPedido() {
+	public Pedido getPedido() {
 		return pedido;
 	}
 
-	public void setPedido(PedidoDomain pedido) {
+	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 
@@ -84,7 +84,7 @@ public abstract class PagamentoDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PagamentoDomain other = (PagamentoDomain) obj;
+		Pagamento other = (Pagamento) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

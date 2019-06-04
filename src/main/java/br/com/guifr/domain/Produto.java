@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class ProdutoDomain implements Serializable{
+public class Produto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,16 +36,16 @@ public class ProdutoDomain implements Serializable{
 		joinColumns = @JoinColumn(name="produto_id"),
 		inverseJoinColumns = @JoinColumn(name="categoria_id")
 	)
-	private List<CategoriaDomain> categorias = new ArrayList<>();
+	private List<Categoria> categorias = new ArrayList<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
-	private Set<ItemPedidoDomain> itens = new HashSet<>();
+	private Set<ItemPedido> itens = new HashSet<>();
 	
-	public ProdutoDomain(){		
+	public Produto(){		
 	}
 
-	public ProdutoDomain(Integer id, String nome, Double preco) {
+	public Produto(Integer id, String nome, Double preco) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -76,28 +76,28 @@ public class ProdutoDomain implements Serializable{
 		this.preco = preco;
 	}
 
-	public List<CategoriaDomain> getCategorias() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<CategoriaDomain> categorias) {
+	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 
-	public Set<ItemPedidoDomain> getItens() {
+	public Set<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<ItemPedidoDomain> itens) {
+	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
 	
 	@JsonIgnore
-	public List<PedidoDomain> getPedidos(){
+	public List<Pedido> getPedidos(){
 		
-		List<PedidoDomain> lista = new ArrayList<>();
+		List<Pedido> lista = new ArrayList<>();
 		
-		for (ItemPedidoDomain x : itens) {
+		for (ItemPedido x : itens) {
 			lista.add(x.getPedido());
 		}
 		
@@ -120,7 +120,7 @@ public class ProdutoDomain implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProdutoDomain other = (ProdutoDomain) obj;
+		Produto other = (Produto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

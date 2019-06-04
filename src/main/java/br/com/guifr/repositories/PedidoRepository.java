@@ -3,9 +3,9 @@ package br.com.guifr.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.guifr.domain.PedidoDomain;
+import br.com.guifr.domain.Pedido;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<PedidoDomain, Integer> {
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
 }

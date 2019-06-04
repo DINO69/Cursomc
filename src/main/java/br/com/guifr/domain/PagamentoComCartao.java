@@ -5,17 +5,17 @@ import javax.persistence.Entity;
 import br.com.guifr.domain.enums.EstadoPagamentoEnum;
 
 @Entity
-public class PagamentoComCartaoDomain extends PagamentoDomain {
+public class PagamentoComCartao extends Pagamento {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer numeroDeParcelas;
 	
-	public PagamentoComCartaoDomain() {
+	public PagamentoComCartao() {
 		
 	}
 
-	public PagamentoComCartaoDomain(Integer id, EstadoPagamentoEnum estado, PedidoDomain pedido,Integer numeroDeParcelas) {
+	public PagamentoComCartao(Integer id, EstadoPagamentoEnum estado, Pedido pedido,Integer numeroDeParcelas) {
 		super(id, estado, pedido);
 		this.numeroDeParcelas = numeroDeParcelas;		
 	}

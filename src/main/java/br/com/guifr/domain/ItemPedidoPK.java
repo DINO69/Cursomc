@@ -15,22 +15,22 @@ public class ItemPedidoPK implements Serializable{
 	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="pedido_id")
-	private PedidoDomain pedido;
+	private Pedido pedido;
 	
 	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="produto_id")
-	private ProdutoDomain produto;
-	public PedidoDomain getPedido() {
+	private Produto produto;
+	public Pedido getPedido() {
 		return pedido;
 	}
-	public void setPedido(PedidoDomain pedido) {
+	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-	public ProdutoDomain getProduto() {
+	public Produto getProduto() {
 		return produto;
 	}
-	public void setProduto(ProdutoDomain produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 	@Override

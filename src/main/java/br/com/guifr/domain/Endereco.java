@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class EnderecoDomain implements Serializable {	
+public class Endereco implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -28,18 +28,18 @@ public class EnderecoDomain implements Serializable {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
-	private ClienteDomain cliente;
+	private Cliente cliente;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
-	private CidadeDomain cidade;
+	private Cidade cidade;
 	
-	public EnderecoDomain() {		
+	public Endereco() {		
 	}
 
-	public EnderecoDomain(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
-			ClienteDomain cliente, CidadeDomain cidade) {
+	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
+			Cliente cliente, Cidade cidade) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -99,19 +99,19 @@ public class EnderecoDomain implements Serializable {
 		this.cep = cep;
 	}
 
-	public ClienteDomain getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(ClienteDomain cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-	public CidadeDomain getCidade() {
+	public Cidade getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(CidadeDomain cidade) {
+	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
 	
@@ -131,7 +131,7 @@ public class EnderecoDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EnderecoDomain other = (EnderecoDomain) obj;
+		Endereco other = (Endereco) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

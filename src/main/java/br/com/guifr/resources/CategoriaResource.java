@@ -1,16 +1,19 @@
 package br.com.guifr.resources;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.guifr.domain.CategoriaDomain;
+import br.com.guifr.domain.Categoria;
 import br.com.guifr.services.CategoriaService;
 
 @RestController
@@ -21,11 +24,11 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<CategoriaDomain> listar() {
-		CategoriaDomain cat1 = new CategoriaDomain(1,"Informática");
-		CategoriaDomain cat2 = new CategoriaDomain(2,"Escritório");
+	public List<Categoria> listar() {
+		Categoria cat1 = new Categoria(1,"Informática");
+		Categoria cat2 = new Categoria(2,"Escritório");
 		
-		List<CategoriaDomain> list = new ArrayList<>();
+		List<Categoria> list = new ArrayList<>();
 		list.add(cat1);
 		list.add(cat2);
 		
@@ -37,9 +40,20 @@ public class CategoriaResource {
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
-		CategoriaDomain obj = service.find(id);
+		Categoria obj = service.find(id);
 		
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody Categoria obj){
+		obj = service.insert(obj);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
+					path("/{id}").buildAndExpand(obj.getId()).toUri();
+		
+		return ResponseEntity.created(uri).build();
+		
 	}
 	
 	

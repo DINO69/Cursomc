@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.guifr.domain.PedidoDomain;
+import br.com.guifr.domain.Pedido;
 import br.com.guifr.services.PedidoService;
 
 @RestController
@@ -20,9 +20,9 @@ public class PedidoResource {
 	private PedidoService pedidoService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<PedidoDomain> listar() {
+	public List<Pedido> listar() {
 				
-		List<PedidoDomain> list = pedidoService.list();
+		List<Pedido> list = pedidoService.list();
 				
 		return list;
 	}
@@ -30,7 +30,7 @@ public class PedidoResource {
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id){
 		
-		PedidoDomain obj = pedidoService.find(id);
+		Pedido obj = pedidoService.find(id);
 		
 		return ResponseEntity.ok().body(obj);
 		

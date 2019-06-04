@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.com.guifr.domain.enums.TipoClienteEnum;
 
 @Entity
-public class ClienteDomain implements Serializable {	
+public class Cliente implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -34,7 +34,7 @@ public class ClienteDomain implements Serializable {
 	
 	//@JsonManagedReference	
 	@OneToMany(mappedBy = "cliente")
-	private List<EnderecoDomain> enderecos = new ArrayList<>();
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")
@@ -44,12 +44,12 @@ public class ClienteDomain implements Serializable {
 	//@JsonBackReference
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
-	private List<PedidoDomain> pedidos = new ArrayList<>();
+	private List<Pedido> pedidos = new ArrayList<>();
 	
-	public ClienteDomain() {
+	public Cliente() {
 	}
 
-	public ClienteDomain(Integer id, String nome, String email, String cpfOuCnpj, TipoClienteEnum tipoClienteEnum) {
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoClienteEnum tipoClienteEnum) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -98,11 +98,11 @@ public class ClienteDomain implements Serializable {
 		this.tipoClienteEnum = tipoClienteEnum.getCod();
 	}
 
-	public List<EnderecoDomain> getEnderecos() {
+	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(List<EnderecoDomain> enderecos) {
+	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 
@@ -116,11 +116,11 @@ public class ClienteDomain implements Serializable {
 
 	
 	
-	public List<PedidoDomain> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(List<PedidoDomain> pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 
@@ -140,7 +140,7 @@ public class ClienteDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClienteDomain other = (ClienteDomain) obj;
+		Cliente other = (Cliente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

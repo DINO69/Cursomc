@@ -10,17 +10,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.guifr.domain.CategoriaDomain;
-import br.com.guifr.domain.CidadeDomain;
-import br.com.guifr.domain.ClienteDomain;
-import br.com.guifr.domain.EnderecoDomain;
-import br.com.guifr.domain.EstadoDomain;
-import br.com.guifr.domain.ItemPedidoDomain;
-import br.com.guifr.domain.PagamentoComBoletoDomain;
-import br.com.guifr.domain.PagamentoComCartaoDomain;
-import br.com.guifr.domain.PagamentoDomain;
-import br.com.guifr.domain.PedidoDomain;
-import br.com.guifr.domain.ProdutoDomain;
+import br.com.guifr.domain.Categoria;
+import br.com.guifr.domain.Cidade;
+import br.com.guifr.domain.Cliente;
+import br.com.guifr.domain.Endereco;
+import br.com.guifr.domain.Estado;
+import br.com.guifr.domain.ItemPedido;
+import br.com.guifr.domain.PagamentoComBoleto;
+import br.com.guifr.domain.PagamentoComCartao;
+import br.com.guifr.domain.Pagamento;
+import br.com.guifr.domain.Pedido;
+import br.com.guifr.domain.Produto;
 import br.com.guifr.domain.enums.EstadoPagamentoEnum;
 import br.com.guifr.domain.enums.TipoClienteEnum;
 import br.com.guifr.repositories.CategoriaRepository;
@@ -62,12 +62,12 @@ public class CursomcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		CategoriaDomain cat1 = new CategoriaDomain(null, "Informática");
-		CategoriaDomain cat2 = new CategoriaDomain(null, "Escritório");
+		Categoria cat1 = new Categoria(null, "Informática");
+		Categoria cat2 = new Categoria(null, "Escritório");
 		
-		ProdutoDomain p1 = new ProdutoDomain(null, "Computador", 2000.00);
-		ProdutoDomain p2 = new ProdutoDomain(null, "Impressora", 800.00);
-		ProdutoDomain p3 = new ProdutoDomain(null, "Mouse", 80.00);
+		Produto p1 = new Produto(null, "Computador", 2000.00);
+		Produto p2 = new Produto(null, "Impressora", 800.00);
+		Produto p3 = new Produto(null, "Mouse", 80.00);
 		
 		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
@@ -79,12 +79,12 @@ public class CursomcApplication implements CommandLineRunner {
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
-		EstadoDomain est1 = new EstadoDomain(null,"Minas Gerais");
-		EstadoDomain est2 = new EstadoDomain(null,"São Paulo");
+		Estado est1 = new Estado(null,"Minas Gerais");
+		Estado est2 = new Estado(null,"São Paulo");
 		
-		CidadeDomain c1 = new CidadeDomain(null, "Uberlândia", est1);
-		CidadeDomain c2 = new CidadeDomain(null, "São Paulo", est2);
-		CidadeDomain c3 = new CidadeDomain(null, "Campinas", est2);
+		Cidade c1 = new Cidade(null, "Uberlândia", est1);
+		Cidade c2 = new Cidade(null, "São Paulo", est2);
+		Cidade c3 = new Cidade(null, "Campinas", est2);
 		
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2,c3));
@@ -92,15 +92,15 @@ public class CursomcApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 		
-		ClienteDomain cli1 = new ClienteDomain(null, "Maria Silva", "maria@gmail.com",
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com",
 					"12312312312", TipoClienteEnum.PESSOAFISICA);
 		
 		cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
 		
-		EnderecoDomain e1 = new EnderecoDomain(null, "Rua Flores", "300",
+		Endereco e1 = new Endereco(null, "Rua Flores", "300",
 				"Apto 203", "Jardim", "38220834", cli1, c1);
 		
-		EnderecoDomain e2 = new EnderecoDomain(null, "Avenida Matos", "105",
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105",
 				"Sala 800", "centro", "38777012", cli1, c2);
 		
 		
@@ -115,23 +115,23 @@ public class CursomcApplication implements CommandLineRunner {
 		sdf.setTimeZone(TimeZone.getTimeZone("UTC-3"));
 		
 		
-		PedidoDomain ped1 = new PedidoDomain(null,
+		Pedido ped1 = new Pedido(null,
 											sdf.parse("30/09/2017 10:32"),											
 											cli1,
 											e1);
-		PedidoDomain ped2 = new PedidoDomain(null,
+		Pedido ped2 = new Pedido(null,
 											sdf.parse("10/10/2017 19:35"),											
 											cli1,
 											e2);
 		
-		PagamentoDomain pagto1 = new PagamentoComCartaoDomain(null,
+		Pagamento pagto1 = new PagamentoComCartao(null,
 						  EstadoPagamentoEnum.QUITADO,
 						  ped1, 
 						  6);
 		
 		ped1.setPagamento(pagto1);
 		
-		PagamentoDomain pagto2 = new PagamentoComBoletoDomain(null,
+		Pagamento pagto2 = new PagamentoComBoleto(null,
 									EstadoPagamentoEnum.PENDENTE,
 									ped2,
 									sdf.parse("20/10/2017 00:00"),
@@ -144,9 +144,9 @@ public class CursomcApplication implements CommandLineRunner {
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
 		
-		ItemPedidoDomain ip1 = new ItemPedidoDomain(ped1, p1, 0.00, 1, 2000.00);
-		ItemPedidoDomain ip2 = new ItemPedidoDomain(ped1, p3, 0.00, 2, 80.00);
-		ItemPedidoDomain ip3 = new ItemPedidoDomain(ped2, p2, 100.00, 1, 800.00);
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
 		
 		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
 		ped2.getItens().addAll(Arrays.asList(ip3));

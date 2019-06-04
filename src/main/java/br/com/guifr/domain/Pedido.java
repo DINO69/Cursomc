@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class PedidoDomain implements Serializable{
+public class Pedido implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -33,28 +33,28 @@ public class PedidoDomain implements Serializable{
 	
 	//@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
-	private PagamentoDomain pagamento;
+	private Pagamento pagamento;
 	
 	//@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
-	private ClienteDomain cliente;
+	private Cliente cliente;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="endereco_de_entrega_id")
-	private EnderecoDomain endereoDeEntrega;
+	private Endereco endereoDeEntrega;
 	
 	
 	@OneToMany(mappedBy = "id.pedido")
-	private Set<ItemPedidoDomain> itens = new HashSet<>();
+	private Set<ItemPedido> itens = new HashSet<>();
 	
-	public PedidoDomain() {
+	public Pedido() {
 		
 	}
 
-	public PedidoDomain(Integer id, Date instante, PagamentoDomain pagamento, ClienteDomain cliente,
-			EnderecoDomain endereoDeEntrega) {
+	public Pedido(Integer id, Date instante, Pagamento pagamento, Cliente cliente,
+			Endereco endereoDeEntrega) {
 		super();
 		this.id = id;
 		this.instante = instante;
@@ -63,8 +63,8 @@ public class PedidoDomain implements Serializable{
 		this.endereoDeEntrega = endereoDeEntrega;
 	}
 	
-	public PedidoDomain(Integer id, Date instante, ClienteDomain cliente,
-			EnderecoDomain endereoDeEntrega) {
+	public Pedido(Integer id, Date instante, Cliente cliente,
+			Endereco endereoDeEntrega) {
 		super();
 		this.id = id;
 		this.instante = instante;		
@@ -89,35 +89,35 @@ public class PedidoDomain implements Serializable{
 		this.instante = instante;
 	}
 
-	public PagamentoDomain getPagamento() {
+	public Pagamento getPagamento() {
 		return pagamento;
 	}
 
-	public void setPagamento(PagamentoDomain pagamento) {
+	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
 
-	public ClienteDomain getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(ClienteDomain cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-	public EnderecoDomain getEndereoDeEntrega() {
+	public Endereco getEndereoDeEntrega() {
 		return endereoDeEntrega;
 	}
 
-	public void setEndereoDeEntrega(EnderecoDomain endereoDeEntrega) {
+	public void setEndereoDeEntrega(Endereco endereoDeEntrega) {
 		this.endereoDeEntrega = endereoDeEntrega;
 	}
 
-	public Set<ItemPedidoDomain> getItens() {
+	public Set<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<ItemPedidoDomain> itens) {
+	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
 	
@@ -138,7 +138,7 @@ public class PedidoDomain implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PedidoDomain other = (PedidoDomain) obj;
+		Pedido other = (Pedido) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

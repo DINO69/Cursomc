@@ -6,8 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.guifr.domain.CategoriaDomain;
-import br.com.guifr.domain.ClienteDomain;
+import br.com.guifr.domain.Categoria;
 import br.com.guifr.repositories.CategoriaRepository;
 import br.com.guifr.services.exceptions.ObjectNotFoundException;
 
@@ -17,21 +16,26 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;	
 	
-	public CategoriaDomain find(Integer id) {		
+	public Categoria find(Integer id) {		
 				
-		Optional<CategoriaDomain> obj = repo.findById(id); 
+		Optional<Categoria> obj = repo.findById(id); 
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException( 
-		"Objeto não encontrado! Id: " + id + ", Tipo: " + CategoriaDomain.class.getName())); 
+		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName())); 
 		
 		//return obj.orElse(null);
 		
 	}
 	
-	public List<CategoriaDomain> list() {
+	public List<Categoria> list() {
 		
 		return repo.findAll();
 		
+	}
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
 	}
 	
 }

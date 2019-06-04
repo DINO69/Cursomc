@@ -1,22 +1,18 @@
 package br.com.guifr.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class EstadoDomain implements Serializable {	
-	
-	
+public class Cidade implements Serializable {
 
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,18 +20,20 @@ public class EstadoDomain implements Serializable {
 	private Integer id;
 	private String nome;
 	
-	//@JsonBackReference
-	@JsonIgnore
-	@OneToMany(mappedBy = "estado")	
-	List<CidadeDomain> cidades = new ArrayList<>();	 
-	
-	public EstadoDomain() {	
-	}
+	//@JsonManagedReference
+	@ManyToOne
+	@JoinColumn(name="estado_id")
+	private Estado estado;
 
-	public EstadoDomain(Integer id, String nome) {
+	public Cidade(){
+		
+	}
+	
+	public Cidade(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.estado = estado;
 	}
 
 	public Integer getId() {
@@ -54,14 +52,14 @@ public class EstadoDomain implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<CidadeDomain> getCidades() {
-		return cidades;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setCidades(List<CidadeDomain> cidades) {
-		this.cidades = cidades;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,7 +76,7 @@ public class EstadoDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EstadoDomain other = (EstadoDomain) obj;
+		Cidade other = (Cidade) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -87,5 +85,6 @@ public class EstadoDomain implements Serializable {
 		return true;
 	}
 	
+	
+	
 }
-

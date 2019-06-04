@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class ItemPedidoDomain implements Serializable {
+public class ItemPedido implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -21,11 +21,11 @@ public class ItemPedidoDomain implements Serializable {
 	private Integer quantidade;
 	private Double preco;
 	
-	public ItemPedidoDomain() {
+	public ItemPedido() {
 	
 	}
 
-	public ItemPedidoDomain(PedidoDomain pedido, ProdutoDomain produto, Double desconto, Integer quantidade, Double preco) {
+	public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
 		super();
 		this.id.setPedido(pedido);
 		this.id.setProduto(produto);
@@ -35,12 +35,12 @@ public class ItemPedidoDomain implements Serializable {
 	}
 	
 	@JsonIgnore
-	public PedidoDomain getPedido() {
+	public Pedido getPedido() {
 		return id.getPedido();
 	}
 	
 	
-	public ProdutoDomain getProduto() {
+	public Produto getProduto() {
 		return id.getProduto();
 	}
 	
@@ -84,7 +84,7 @@ public class ItemPedidoDomain implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItemPedidoDomain other = (ItemPedidoDomain) obj;
+		ItemPedido other = (ItemPedido) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
