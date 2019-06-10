@@ -1,4 +1,4 @@
-package br.com.guifr.resources;
+package br.com.guifr.resources.exception;
 
 import java.io.Serializable;
 
