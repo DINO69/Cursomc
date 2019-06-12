@@ -3,6 +3,8 @@ package br.com.guifr.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.guifr.domain.Categoria;
+import br.com.guifr.domain.dto.CategoriaDTO;
 import br.com.guifr.repositories.CategoriaRepository;
 import br.com.guifr.services.exceptions.DataIntegrityException;
 import br.com.guifr.services.exceptions.ObjectNotFoundException;
@@ -66,6 +69,10 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
 		return repo.findAll(pageRequest);
+	}
+
+	public Categoria fromDTO(CategoriaDTO objDTO) {		
+		return new Categoria(objDTO.getId(), objDTO.getNome());
 	}
 	
 }
