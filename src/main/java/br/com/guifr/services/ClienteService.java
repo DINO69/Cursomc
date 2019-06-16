@@ -56,10 +56,10 @@ public class ClienteService {
 
 	public void delete(Integer id) {
 		find(id); // Verificar se o id esta cadastrado
-		try {
-			repo.deleteById(id);
+		try {			
+			repo.deleteById(id);			
 		}catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possivel excluir porque há entidades relacionadas.");
+			throw new DataIntegrityException("Não é possivel excluir porque há produtos relacionadas.");
 		}
 	}
 
