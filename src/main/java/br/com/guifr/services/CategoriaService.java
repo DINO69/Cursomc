@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.guifr.domain.Categoria;
+import br.com.guifr.domain.Cliente;
 import br.com.guifr.domain.dto.CategoriaDTO;
 import br.com.guifr.repositories.CategoriaRepository;
 import br.com.guifr.services.exceptions.DataIntegrityException;
@@ -39,9 +40,10 @@ public class CategoriaService {
 	}
 	
 	public Categoria update(Categoria obj) {
-		find(obj.getId()); // Verificar se o id esta cadastrado
-		return repo.save(obj);
-	}
+		Categoria newObj = find(obj.getId()); // Verificar se o id esta cadastrado
+		updateData(newObj,obj);
+		return repo.save(newObj);
+	}	
 
 	public void delete(Integer id) {
 		find(id); // Verificar se o id esta cadastrado
@@ -65,6 +67,10 @@ public class CategoriaService {
 
 	public Categoria fromDTO(CategoriaDTO objDTO) {		
 		return new Categoria(objDTO.getId(), objDTO.getNome());
+	}
+	
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());				
 	}
 	
 }
