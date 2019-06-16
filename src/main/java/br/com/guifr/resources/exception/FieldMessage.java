@@ -2,18 +2,18 @@ package br.com.guifr.resources.exception;
 
 import java.io.Serializable;
 
-public class FieldValidation implements Serializable{
+public class FieldMessage implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String campo;
 	private String mensagem;
 	
-	public FieldValidation() {		
+	public FieldMessage() {		
 	}
 	
 	
-	public FieldValidation(String campo, String mensagem) {
+	public FieldMessage(String campo, String mensagem) {
 		super();
 		this.campo = campo;
 		this.mensagem = mensagem;

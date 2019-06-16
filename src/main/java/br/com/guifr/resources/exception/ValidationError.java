@@ -7,17 +7,17 @@ import java.util.List;
 public class ValidationError extends StandardError implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private List<FieldValidation> errors = new ArrayList<>();
+	private List<FieldMessage> errors = new ArrayList<>();
 	
 	public ValidationError(Integer status, String msg, Long timesStamp) {
 		super(status, msg, timesStamp);
 	}
 
-	public List<FieldValidation> getErrors() {
+	public List<FieldMessage> getErrors() {
 		return errors;
 	}
 
-	public void addErrors(FieldValidation error) {
+	public void addErrors(FieldMessage error) {
 		this.errors.add(error);
 	}
 

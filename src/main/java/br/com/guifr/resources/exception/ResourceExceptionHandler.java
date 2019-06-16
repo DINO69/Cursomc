@@ -39,7 +39,7 @@ public class ResourceExceptionHandler {
 		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), "Validação de campos", System.currentTimeMillis());
 		
 		for(FieldError x : e.getBindingResult().getFieldErrors()) {
-			err.addErrors(new FieldValidation(x.getField(), x.getDefaultMessage()));
+			err.addErrors(new FieldMessage(x.getField(), x.getDefaultMessage()));
 		}
 
 		
