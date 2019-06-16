@@ -3,8 +3,6 @@ package br.com.guifr.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -32,12 +30,6 @@ public class CategoriaService {
 		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName())); 
 		
 		//return obj.orElse(null);
-		
-	}
-	
-	public List<Categoria> list() {
-		
-		return repo.findAll();
 		
 	}
 	
