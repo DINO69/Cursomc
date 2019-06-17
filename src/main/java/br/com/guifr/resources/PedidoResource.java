@@ -17,12 +17,12 @@ import br.com.guifr.services.PedidoService;
 public class PedidoResource {
 	
 	@Autowired
-	private PedidoService pedidoService;
+	private PedidoService produtoService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Pedido> listar() {
 				
-		List<Pedido> list = pedidoService.list();
+		List<Pedido> list = produtoService.findAll();
 				
 		return list;
 	}
@@ -30,7 +30,7 @@ public class PedidoResource {
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
 	public ResponseEntity<Pedido> find(@PathVariable Integer id){
 		
-		Pedido obj = pedidoService.find(id);
+		Pedido obj = produtoService.find(id);
 		
 		return ResponseEntity.ok().body(obj);
 		

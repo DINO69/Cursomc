@@ -63,7 +63,7 @@ public class ClienteService {
 		}
 	}
 
-	public List<Cliente> findAll() {
+	public List<Cliente> findAll() {		
 		return repo.findAll();
 	}
 	

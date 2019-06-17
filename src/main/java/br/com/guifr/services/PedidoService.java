@@ -26,7 +26,7 @@ public class PedidoService {
 		
 	}
 	
-	public List<Pedido> list() {
+	public List<Pedido> findAll() {
 		
 		return repo.findAll();
 		
