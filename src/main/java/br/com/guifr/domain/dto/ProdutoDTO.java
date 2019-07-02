@@ -1,14 +1,11 @@
 package br.com.guifr.domain.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.guifr.domain.Categoria;
 import br.com.guifr.domain.Produto;
 import br.com.guifr.services.validation.ClienteUpdate;
 
