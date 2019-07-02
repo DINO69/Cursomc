@@ -28,7 +28,7 @@ import br.com.guifr.repositories.CidadeRepository;
 import br.com.guifr.repositories.ClienteRepository;
 import br.com.guifr.repositories.EnderecoRepository;
 import br.com.guifr.repositories.EstadoRepository;
-import br.com.guifr.repositories.ItemRepository;
+import br.com.guifr.repositories.ItemPedidoRepository;
 import br.com.guifr.repositories.PagamentoRepository;
 import br.com.guifr.repositories.PedidoRepository;
 import br.com.guifr.repositories.ProdutoRepository;
@@ -53,7 +53,7 @@ public class CursomcApplication implements CommandLineRunner {
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
 	@Autowired
-	private ItemRepository itemRepository;
+	private ItemPedidoRepository itemRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
